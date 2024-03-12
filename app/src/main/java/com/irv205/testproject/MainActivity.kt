@@ -43,6 +43,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun createVoiceNote() {
+    
+    }
+    
     private fun Test() {
         
     }
