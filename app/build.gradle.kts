@@ -7,6 +7,7 @@ android {
     namespace = "com.irv205.testproject"
     compileSdk = 34
 
+    //Activar viewBinding
     viewBinding {
         enable = true
     }

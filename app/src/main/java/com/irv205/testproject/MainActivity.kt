@@ -17,14 +17,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
         binding.btnExplicit.setOnClickListener {
             explicitIntent()
         }
         binding.btnImplicit.setOnClickListener {
             implicitIntent()
         }
-
 
     }
 
@@ -42,14 +40,5 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
     }
-
-    private fun createVoiceNote() {
-    
-    }
-    
-    private fun Test() {
-        
-    }
-
 
 }
