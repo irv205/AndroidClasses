@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import com.irv205.testproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,31 +18,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        val fragment =  BlankFragment()
+        fragment.arguments = bundleOf("NAME" to "Irving")
 
-        binding.btnExplicit.setOnClickListener {
-            explicitIntent()
-        }
-        binding.btnImplicit.setOnClickListener {
-            implicitIntent()
-        }
+        supportFragmentManager
+            .beginTransaction()
+            .add( R.id.container,fragment)
+            .commit()
 
 
     }
 
-    private fun explicitIntent() {
-
-        val text = binding.etMain
-        val intent = Intent(this, UserActivity::class.java).apply {
-            putExtra("inputText", text.text.toString())
-        }
-        startActivity(intent)
-    }
-
-    private fun implicitIntent(){
-        val url = "https://www.google.com/"
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(intent)
-    }
 
     private fun createVoiceNote() {
     
