@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.irv205.testproject.databinding.FragmentBlankBinding
 
 class BlankFragment : Fragment() {
@@ -23,6 +24,17 @@ class BlankFragment : Fragment() {
     ): View? {
         binding = FragmentBlankBinding.inflate(layoutInflater)
 
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initializeListeners()
+    }
+
+
+    private fun initializeListeners(){
         binding.btnExplicit.setOnClickListener {
             explicitIntent()
         }
@@ -30,7 +42,11 @@ class BlankFragment : Fragment() {
             implicitIntent()
         }
 
-        return binding.root
+        binding.navigateButton.setOnClickListener {
+            val song = Song("Test",12, 1, "Corridos")
+            val destination = BlankFragmentDirections.actionBlankFragmentToSecondFragment(song)
+            findNavController().navigate(destination)
+        }
 
     }
 

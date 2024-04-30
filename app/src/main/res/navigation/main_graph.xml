@@ -9,5 +9,25 @@
         android:id="@+id/blankFragment"
         android:name="com.irv205.testproject.BlankFragment"
         android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
+        tools:layout="@layout/fragment_blank" >
+        <action
+            android:id="@+id/action_blankFragment_to_secondFragment"
+            app:destination="@id/secondFragment">
+           <!-- <argument
+                android:name="user_name"
+                app:argType="string"
+                android:defaultValue="No name"
+                />-->
+            <argument
+                android:name="song"
+                app:argType="com.irv205.testproject.Song"
+                />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.irv205.testproject.SecondFragment"
+        android:label="SecondFragment"
+        tools:layout="@layout/fragment_second"
+        />
 </navigation>
