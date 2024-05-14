@@ -26,7 +26,7 @@ class LoginPresenterImp(private val loginView: LoginView): LoginPresenter {
         if (user.isNotEmpty() && pass.isNotEmpty()){
             val user1 = User(user, pass)
             dummyDb.addUser(user1)
-            loginView.showUsers(dummyDb.users)
+            loginView.showUsers(dummyDb.getAllUsers())
         }else{
             loginView.showError("Error en formulario")
         }

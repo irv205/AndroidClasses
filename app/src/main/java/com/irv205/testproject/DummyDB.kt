@@ -3,7 +3,7 @@ package com.irv205.testproject
 import com.irv205.testproject.model.User
 
 object DummyDB {
-    val users: MutableList<User> = mutableListOf()
+    private val users: MutableList<User> = mutableListOf()
 
 
     fun addUser(user: User) {
