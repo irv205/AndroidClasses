@@ -27,7 +27,7 @@ class SecondFragment: Fragment() {
 
         //binding.infoTextView.text = requireArguments().getString("user_name")
 
-        binding.infoTextView.text = requireArguments().getParcelable<Song>("song").toString()
+        //binding.infoTextView.text = requireArguments().getParcelable<Song>("song").toString()
 
     }
 
