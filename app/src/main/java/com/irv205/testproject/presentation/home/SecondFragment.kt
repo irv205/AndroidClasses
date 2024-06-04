@@ -1,4 +1,4 @@
-package com.irv205.testproject
+package com.irv205.testproject.presentation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.irv205.testproject.databinding.FragmentSecondBinding
+import com.irv205.testproject.domain.model.Song
 
 class SecondFragment: Fragment() {
 

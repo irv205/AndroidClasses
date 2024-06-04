@@ -1,4 +1,4 @@
-package com.irv205.testproject
+package com.irv205.testproject.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.irv205.testproject
+package com.irv205.testproject.presentation.login
 
 import android.content.Intent
 import android.net.Uri
@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.irv205.testproject.databinding.FragmentBlankBinding
+import com.irv205.testproject.domain.model.Song
 
 class BlankFragment : Fragment() {
 
     private lateinit var binding: FragmentBlankBinding
+    private val viewModel : LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,14 @@ class BlankFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeListeners()
+        observer()
+
+    }
+
+    private fun observer() {
+        viewModel.character.observe(viewLifecycleOwner) {
+            binding.tvCharacter.text = it.name
+        }
     }
 
 

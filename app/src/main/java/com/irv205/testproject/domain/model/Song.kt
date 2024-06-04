@@ -1,4 +1,4 @@
-package com.irv205.testproject
+package com.irv205.testproject.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

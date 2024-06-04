@@ -1,11 +1,10 @@
-package com.irv205.testproject
+package com.irv205.testproject.presentation
 
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.irv205.testproject.R
 import com.irv205.testproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
