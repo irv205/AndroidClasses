@@ -34,15 +34,15 @@ class BlankFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeListeners()
-        observer()
+        ///observer()
 
     }
 
-    private fun observer() {
-        viewModel.character.observe(viewLifecycleOwner) {
-            binding.tvCharacter.text = it.name
-        }
-    }
+//    private fun observer() {
+//        viewModel.character.observe(viewLifecycleOwner) {
+//            binding.tvCharacter.text = it.name
+//        }
+//    }
 
 
     private fun initializeListeners(){
@@ -55,8 +55,8 @@ class BlankFragment : Fragment() {
 
         binding.navigateButton.setOnClickListener {
             val song = Song("Test",12, 1, "Corridos")
-            val destination = BlankFragmentDirections.actionBlankFragmentToSecondFragment(song)
-            findNavController().navigate(destination)
+            //val destination = BlankFragmentDirections.actionBlankFragmentToSecondFragment(song)
+            //findNavController().navigate(destination)
         }
 
     }

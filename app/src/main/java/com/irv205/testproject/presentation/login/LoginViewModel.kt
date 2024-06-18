@@ -8,20 +8,21 @@ import com.irv205.testproject.domain.model.Song
 
 class LoginViewModel : ViewModel() {
 
-    private val _character = MutableLiveData<Character>()
-    val character : LiveData<Character> get() = _character
+    private val _user = MutableLiveData<Boolean>()
+    val user : LiveData<Boolean> get() = _user
 
-    init {
-        createCharacter()
-    }
+    private val _login = MutableLiveData<Boolean>()
+    val login : LiveData<Boolean> get() = _login
 
-    private fun createCharacter(){
-        _character.value = Character(
-            1,
-            "Rick",
-            "Vivo",
-            "Humano"
-        )
+    private val _register = MutableLiveData<Boolean>()
+    val register : LiveData<Boolean> get() = _register
+
+
+    fun validateUser(mail: String) {
+
+        if (mail == "Irving") _user.value = true
+        else _user.value = false
+
     }
 
 }
