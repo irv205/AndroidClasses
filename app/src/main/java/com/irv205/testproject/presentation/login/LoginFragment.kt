@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.irv205.testproject.R
 import com.irv205.testproject.databinding.FragmentLoginBinding
-import kotlin.math.log
+import com.irv205.testproject.domain.model.RegisterUserDomain
 
 class LoginFragment : Fragment() {
 
@@ -34,35 +33,37 @@ class LoginFragment : Fragment() {
 
     private fun login() {
         binding.btnLogin.setOnClickListener {
-            viewModel.validateUser(binding.etMail.text.toString())
-            //Toast.makeText(context, binding.etMail.text.toString(), Toast.LENGTH_LONG).show()
+            viewModel.validateLogin(
+                binding.etMail.text.toString(),
+                binding.edPassword.text.toString()
+            )
         }
     }
 
     private fun observer() {
-
-        viewModel.user.observe(viewLifecycleOwner) {
-            when(it){
-                true -> {
+        viewModel.loginState.observe(viewLifecycleOwner) { loginstate ->
+            when(loginstate){
+                LoginState.Default -> { }
+                is LoginState.Login -> {
                     val destination = LoginFragmentDirections.actionLoginFragmentToSecondFragment()
                     findNavController().navigate(destination)
-                    Toast.makeText(context, "Existe", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Login", Toast.LENGTH_LONG).show()
                 }
-                false -> Toast.makeText(context, "No existe", Toast.LENGTH_LONG).show()
-            }
-        }
+                LoginState.Register -> {
+                    val destination = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+                    findNavController().navigate(destination)
+                    Toast.makeText(context, "Registro", Toast.LENGTH_LONG).show()
+                }
+                LoginState.Error -> {
+                    Toast.makeText(context, "No existe", Toast.LENGTH_LONG).show()
+                }
 
-        viewModel.login.observe(viewLifecycleOwner) {
-            when(it) {
-                true -> TODO()
-                false -> TODO()
-            }
-        }
-
-        viewModel.register.observe(viewLifecycleOwner) {
-            when(it){
-                true -> TODO()
-                false -> TODO()
+                LoginState.MailError -> {
+                    Toast.makeText(context, "Mail incorrecto", Toast.LENGTH_LONG).show()
+                }
+                LoginState.PasswordError -> {
+                    Toast.makeText(context, "Password incorrecto", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }

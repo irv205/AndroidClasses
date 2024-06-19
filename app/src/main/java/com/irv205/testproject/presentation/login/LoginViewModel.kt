@@ -3,25 +3,22 @@ package com.irv205.testproject.presentation.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.irv205.testproject.domain.model.Character
-import com.irv205.testproject.domain.model.Song
+import com.irv205.testproject.domain.model.RegisterUserDomain
 
 class LoginViewModel : ViewModel() {
 
-    private val _user = MutableLiveData<Boolean>()
-    val user : LiveData<Boolean> get() = _user
+    private val _loginState = MutableLiveData<LoginState>()
+    val loginState : LiveData<LoginState> get() = _loginState
 
-    private val _login = MutableLiveData<Boolean>()
-    val login : LiveData<Boolean> get() = _login
-
-    private val _register = MutableLiveData<Boolean>()
-    val register : LiveData<Boolean> get() = _register
+    //DB
 
 
-    fun validateUser(mail: String) {
+    fun validateLogin(mail: String, password: String) {
 
-        if (mail == "Irving") _user.value = true
-        else _user.value = false
+        if (mail == "Irving" && password == "1234") _loginState.value = LoginState.Login
+        else if (mail != "Irving") _loginState.value = LoginState.MailError
+        else if (password != "1234") _loginState.value = LoginState.PasswordError
+        else _loginState.value = LoginState.Error
 
     }
 
