@@ -33,11 +33,16 @@ class LoginFragment : Fragment() {
 
     private fun login() {
         binding.btnLogin.setOnClickListener {
-            viewModel.validateLogin(
+            /*viewModel.validateLogin(
                 binding.etMail.text.toString(),
                 binding.edPassword.text.toString()
-            )
+            )*/
+            viewModel.testCoroutine()
         }
+        binding.buttonCancel.setOnClickListener {
+            viewModel.cancelCoroutine()
+        }
+
     }
 
     private fun observer() {
