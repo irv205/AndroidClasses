@@ -5,13 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.irv205.testproject.databinding.FragmentSecondBinding
-import com.irv205.testproject.domain.model.Song
+
 
 class SecondFragment: Fragment() {
 
     private var _binding : FragmentSecondBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var recyclerView : RecyclerView
+    private val viewModel: HomeViewModel by viewModels()
+
     //private val navArgs by navArgs<Blan>
 
     override fun onCreateView(
@@ -27,8 +34,13 @@ class SecondFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //binding.infoTextView.text = requireArguments().getString("user_name")
+        recyclerView = binding.rvHomeList
 
-        binding.infoTextView.text = requireArguments().getParcelable<Song>("song").toString()
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        viewModel.itemListObject.observe(viewLifecycleOwner) {
+            recyclerView.adapter = HomeAdapter(it)
+        }
 
     }
 
