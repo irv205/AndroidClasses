@@ -10,8 +10,10 @@ import com.bumptech.glide.Glide
 import com.irv205.testproject.databinding.RickAndMortyItemBinding
 import com.irv205.testproject.domain.Character
 
-class RickMortyAdapter :
+class RickMortyAdapter() :
     ListAdapter<Character, RickMortyAdapter.ViewHolder>(CharactersDiffUtils) {
+
+    private var onClickListener: ((String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -23,18 +25,31 @@ class RickMortyAdapter :
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolder(private val binding: RickAndMortyItemBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Character){
+    inner class ViewHolder(
+        private val binding: RickAndMortyItemBinding,
+        private val context: Context
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Character) {
             binding.tvName.text = item.name
             binding.tvStatus.text = item.status
 
             Glide.with(context)
                 .load(item.imageUrl)
                 .into(binding.imageCharacter)
+
+            binding.root.setOnClickListener {
+                onClickListener?.invoke(item.name)
+            }
         }
     }
 
+    fun click(onclick: (String) -> Unit) {
+        onClickListener = onclick
+    }
+
 }
+
+
 
 
 object CharactersDiffUtils : DiffUtil.ItemCallback<Character>() {

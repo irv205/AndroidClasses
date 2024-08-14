@@ -1,4 +1,4 @@
-package com.irv205.testproject.data
+package com.irv205.testproject.data.repository
 
 import com.irv205.testproject.domain.Character
 import com.irv205.testproject.domain.RickAndMortyRepository
